@@ -20,8 +20,8 @@
 @media(max-width:650px){.poster-pair{gap:7px;padding:14px 16px}.work-visual.poster-pair-visual .poster-pair img{max-width:calc(50% - 4px)}}
 
 /* About section contact details */
-.about-contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}.about-contact>div{display:flex;flex-direction:column;gap:4px;min-width:0}.about-contact small{font-size:10px;color:#9a817a;letter-spacing:.06em}.about-contact strong,.about-contact a{font-size:12px;color:#65544e;font-weight:500;overflow-wrap:anywhere}.about-contact a:hover{color:#b7777b}
-@media(max-width:650px){.about-contact{grid-template-columns:1fr;gap:10px;margin-top:20px;padding-top:16px}.about-contact>div{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:start;gap:10px}.about-contact small{font-size:10px}.about-contact strong,.about-contact a{font-size:12px}}
+.about-contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}.about-contact>div{display:flex;flex-direction:column;gap:4px;min-width:0}.about-contact small{font-size:10px;color:#9a817a;letter-spacing:.06em}.about-contact strong{font-size:12px;color:#65544e;font-weight:500;overflow-wrap:anywhere}
+@media(max-width:650px){.about-contact{grid-template-columns:1fr;gap:10px;margin-top:20px;padding-top:16px}.about-contact>div{display:grid;grid-template-columns:76px minmax(0,1fr);align-items:start;gap:10px}.about-contact small{font-size:10px}.about-contact strong{font-size:12px}}
 
 .edu-seal.edu-number{overflow:hidden;padding:4px}.edu-seal.edu-number img{width:100%;height:100%;object-fit:contain}
 
@@ -164,7 +164,7 @@ body{background:radial-gradient(ellipse at 8% 5%,#f7dfd5 0,transparent 22%),radi
 .skill-card-stack{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
 .skill-card-stack span{position:absolute;width:min(300px,78%);height:430px;border:1px solid #fffaf1;background:linear-gradient(150deg,#cf9c91,#bb8384);border-radius:22px;box-shadow:0 18px 35px #594e4330;transform:rotate(-9deg) translate(-12px,8px)}
 .skill-card-stack span+span{background:linear-gradient(145deg,#829f96,#557c78);transform:rotate(7deg) translate(10px,5px)}
-.skill-file-card{position:relative;z-index:1;width:min(320px,84%);height:468px;padding:0;border:0;background:none;perspective:1400px;cursor:pointer;filter:drop-shadow(0 24px 28px #485a5133);-webkit-tap-highlight-color:transparent}
+.skill-file-card{position:relative;z-index:1;width:min(320px,84%);height:468px;padding:0;border:0;background:none;filter:drop-shadow(0 24px 28px #485a5133)}
 .skill-file-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:stretch;overflow:hidden;border:1px solid #fffdf4;border-radius:20px;padding:20px 21px;color:#385956;text-align:left;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .75s cubic-bezier(.2,.72,.2,1)}
 .skill-file-front{background:linear-gradient(155deg,#fafff7,#e8f0e7 62%,#d7e5de)}
 .skill-file-front:after{content:"";position:absolute;inset:auto -25% -18% 18%;height:50%;border-radius:50%;border:1px solid #8fb5a7;opacity:.55;transform:rotate(-20deg)}
@@ -313,6 +313,11 @@ body{background:radial-gradient(ellipse at 8% 5%,#f7dfd5 0,transparent 22%),radi
 .hobby-fan-card.is-active{transform:translate(-50%,-53%) translate(0,-6px) rotate(0) scale(1.045);filter:none;border-color:#fff;box-shadow:0 28px 58px #33352c45}
 .hobby-fan-card.is-active img{transform:scale(1.025)}
 .hobby-fan-card:focus-visible{z-index:40!important;outline:3px solid #cf7969;outline-offset:5px}
+.skill-back-mark{position:relative;align-self:center;display:grid;place-items:center;width:108px;height:108px;margin:auto 0 0;border:1px solid #f0c4a8;border-radius:50%;background:radial-gradient(circle at 35% 28%,#ffffff20,transparent 56%);color:#f1c3a6;font:500 38px/1 var(--mono);letter-spacing:-.08em;text-shadow:0 4px 14px #122e2d55;box-shadow:0 0 0 8px #edc5a41b,0 0 0 17px #edc5a410,0 14px 34px #102f2d2b;transition:transform .4s,box-shadow .4s}
+.skill-back-mark:before{content:"";position:absolute;inset:-13px -7px;border:1px solid #f0c4a866;border-radius:50%;transform:rotate(-28deg)}
+.skill-back-mark:after{content:"✳";position:absolute;top:-17px;right:-18px;color:#efb295;font:16px var(--sans);text-shadow:none}
+.skill-back-mark[data-mark-length="wide"]{font-size:29px;letter-spacing:-.1em}
+.skill-file-card.is-flipped .skill-back-mark{transform:rotate(-8deg) scale(1.04);box-shadow:0 0 0 10px #edc5a422,0 0 0 20px #edc5a410,0 17px 38px #102f2d36}
 .hobby-reading{position:relative;z-index:31;min-height:305px;padding:20px 0 0 28px;border-left:1px solid #d6c7b9;display:flex;flex-direction:column}
 .hobby-reading-index{display:flex;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid #d7c9bd;color:#8d9c93;font:9px var(--mono);letter-spacing:.12em}
 .hobby-reading-index b{color:#c87363;font-size:12px}
@@ -327,6 +332,18 @@ body{background:radial-gradient(ellipse at 8% 5%,#f7dfd5 0,transparent 22%),radi
 @media(max-width:900px){.hobby-archive{grid-template-columns:minmax(0,1fr);gap:8px;padding:24px 28px 25px}.hobby-fan-stage{height:390px}.hobby-fan-card{width:clamp(185px,28vw,230px);height:clamp(270px,41vw,330px)}.hobby-reading{min-height:auto;padding:17px 0 0;border-left:0;border-top:1px solid #d6c7b9}.hobby-reading-copy{padding:22px 0}.hobby-reading-copy h3{font-size:30px}}
 @media(max-width:650px){.hobby-archive{margin-top:26px;padding:18px 12px 17px;gap:0}.hobby-fan-stage{height:330px;margin-inline:-5px}.hobby-fan-card{width:clamp(145px,47vw,195px);height:clamp(220px,70vw,290px);border-width:5px;box-shadow:0 10px 22px #413d3433}.hobby-fan-card .fan-card-label{top:7px;left:7px;padding:5px 6px;font-size:7px}.hobby-fan-card.is-active{transform:translate(-50%,-53%) translate(0,-4px) rotate(0) scale(1.035)}.hobby-reading{padding-top:14px}.hobby-reading-index{font-size:8px}.hobby-reading-copy{padding:20px 0}.hobby-reading-copy h3{margin:8px 0;font-size:27px}.hobby-reading-copy p{font-size:13px}.hobby-reading-controls{align-items:flex-start;font-size:10px}.hobby-reading-controls button{padding:7px 8px;font-size:9px}.interest-closing{margin-top:25px}}
 @media(prefers-reduced-motion:reduce){.hobby-fan-card,.hobby-fan-card img,.hobby-reading-controls button{transition:none}}
+.skill-icon{position:relative;width:82px;height:82px;display:grid;place-items:center;border:1px solid #b3cec2;border-radius:50%;background:radial-gradient(circle at 35% 28%,#fff, #f6fbf4 68%);color:#c97563;box-shadow:0 8px 24px #55776c24,0 0 0 5px #fbfff860;transition:transform .35s,color .35s,box-shadow .35s}
+.skill-icon:after{content:"";position:absolute;inset:-7px;border:1px solid #a7c7bb;border-radius:50%}
+.skill-icon svg{width:48px;height:48px;overflow:visible}
+.skill-card-stage.is-drawing .skill-icon{transform:rotate(-8deg) scale(1.08);box-shadow:0 12px 28px #55776c30,0 0 0 5px #fbfff860}
+.work-categories{gap:12px;margin-bottom:38px;padding:16px;background:linear-gradient(110deg,#f6efe4,#fffaf2);border-color:#d7c8b8;box-shadow:0 14px 34px #12282930}
+.category-tab{min-height:58px;min-width:180px;gap:13px;padding:12px 20px;border:1px solid #ddcbbc;background:#fffdf8;color:#4d5d59;font-size:16px;font-weight:500;letter-spacing:.03em;box-shadow:0 4px 12px #493e3510;transition:background .25s,border-color .25s,transform .25s,box-shadow .25s,color .25s}
+.category-tab span{display:grid;place-items:center;width:29px;height:29px;border-radius:50%;background:#f1e3d8;color:#bd6554;font:12px var(--mono)}
+.category-tab:hover{transform:translateY(-3px);border-color:#8eb4a6;background:#eff5ef;box-shadow:0 8px 18px #315a5018}
+.category-tab.active{background:linear-gradient(135deg,#315652,#244542);border-color:#315652;color:#fffaf0;box-shadow:0 9px 22px #24454235}
+.category-tab.active span{background:#f4d2bd;color:#914f43}
+.category-tab:focus-visible{outline:3px solid #d47461;outline-offset:3px}
+@media(max-width:650px){.work-categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:26px;padding:11px;top:72px}.category-tab{min-width:0;min-height:54px;gap:9px;padding:9px 11px;font-size:13px}.category-tab span{width:26px;height:26px;font-size:10px}}
 .hobby-archive{grid-template-columns:minmax(0,1fr);gap:26px;margin-top:35px;padding:30px clamp(18px,3.5vw,48px) 27px;overflow:visible}
 .hobby-fan-stage{position:relative;display:block;height:450px;min-height:0;padding:12px 0 10px;perspective:1100px;overflow:visible}
 .hobby-fan-stage:before{content:"";position:absolute;left:50%;top:24px;width:min(78%,760px);height:80%;border-top:1px solid #d9c9ba;border-radius:50% 50% 0 0;transform:translateX(-50%);pointer-events:none;opacity:.72}

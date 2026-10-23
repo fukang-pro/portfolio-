@@ -253,20 +253,36 @@ detailDialog.addEventListener('click', (event) => {
 });
 detailDialog.addEventListener('close', () => detailImage.removeAttribute('src'));
 
-// Skill files can be opened from the index or drawn at random, then flipped to their category.
+// Skill files can be selected from the index or drawn at random.
 const skillCard = document.querySelector('.skill-file-card');
 const skillEntries = [...document.querySelectorAll('.skill-index-list button[data-skill]')];
 const skillName = skillCard?.querySelector('[data-skill-name]');
-const skillBackName = skillCard?.querySelector('[data-skill-back-name]');
 const skillGroup = skillCard?.querySelector('[data-skill-group]');
-const skillBackGroup = skillCard?.querySelector('[data-skill-back-group]');
 const skillCount = skillCard?.querySelector('[data-skill-count]');
+const skillMark = skillCard?.querySelector('[data-skill-mark]');
 const skillCardStage = document.querySelector('.skill-card-stage');
 const skillDrawButton = document.querySelector('.skill-draw-button');
 const skillThemes = ['mint', 'coral', 'blue', 'gold', 'violet'];
 let currentSkillIndex = 0;
 let currentSkillTheme = -1;
 let skillRevealTimer;
+const skillIcons = {
+  '即梦': '<path d="M32 7v13M32 44v13M7 32h13M44 32h13M14 14l9 9m18 18 9 9M50 14l-9 9m-18 18-9 9"/><path d="m32 23 3 6 6 3-6 3-3 6-3-6-6-3 6-3 3-6Z"/>',
+  '可灵': '<rect x="10" y="14" width="44" height="36" rx="5"/><path d="M22 14v36m20-36v36M10 23h12m-12 9h12m-12 9h12m20-18h12m-12 9h12m-12 9h12"/><path d="m29 25 11 7-11 7V25Z"/>',
+  Runway: '<path d="M12 47 34 13l18 34H12Z"/><path d="M12 47h40M23 36h22M29 25h10"/><circle cx="34" cy="32" r="4"/>',
+  Midjourney: '<path d="m8 48 15-24 9 13 8-11 16 22H8Z"/><circle cx="45" cy="17" r="5"/><path d="M16 16v8m-4-4h8M51 37v7m-3.5-3.5h7"/>',
+  'Premiere Pro': '<rect x="11" y="12" width="42" height="40" rx="4"/><path d="M18 44V21h8a7 7 0 0 1 0 14h-8m18 9V31m0 7c1-6 5-8 10-7"/>',
+  'After Effects': '<path d="M12 48 28 16l16 32M19 36h18"/><path d="M39 21h13M45.5 15v12M42 42l6-6 6 6"/>',
+  '剪映': '<path d="m17 14 30 36M47 14 17 50"/><circle cx="15" cy="12" r="5"/><circle cx="49" cy="12" r="5"/><circle cx="15" cy="52" r="5"/><circle cx="49" cy="52" r="5"/><path d="M25 32h14"/>',
+  Photoshop: '<rect x="10" y="12" width="44" height="40" rx="4"/><path d="M17 44V21h8a7 7 0 0 1 0 14h-8m28-8c-6-5-13 2-6 6l4 2c7 4 0 12-7 7"/>',
+  WPS: '<path d="M17 9h22l10 10v36H17z"/><path d="M39 9v12h10M23 29h20M23 36h20M23 43h14"/><path d="m25 20 5 4 5-4"/>',
+  '项目统筹': '<rect x="14" y="12" width="38" height="42" rx="4"/><path d="m21 24 3 3 5-6m4 4h12M21 39l3 3 5-6m4 4h12"/><path d="M23 8h20"/>',
+  '创意策划': '<path d="M16 50h33M21 45l4-14 20-20 9 9-20 20-13 5Z"/><path d="m39 15 9 9M18 45l7-1-4-5"/><path d="M12 19v10m-5-5h10"/>',
+  '新媒体运营': '<rect x="20" y="8" width="24" height="48" rx="5"/><path d="M27 15h10M29 49h6"/><path d="M49 22c4 3 6 7 6 11s-2 8-6 11M15 22c-4 3-6 7-6 11s2 8 6 11"/>',
+  '全流程交付': '<circle cx="32" cy="32" r="22"/><path d="M32 10a22 22 0 0 1 20 13l-7 1 8-1 2-7M52 32a20 20 0 0 1-20 20M32 52A20 20 0 0 1 12 39l7-1-8 1-2 7M12 32a20 20 0 0 1 20-20"/><path d="m23 32 6 6 13-14"/>',
+  '拍摄': '<path d="M9 23h11l5-7h14l5 7h11v29H9z"/><circle cx="32" cy="37" r="10"/><circle cx="32" cy="37" r="4"/><path d="M15 28h3"/>',
+  '手绘': '<path d="m12 46 4 7 8-2 27-29-12-12-27 29z"/><path d="m34 17 12 12M12 46l8 8M9 57l12-3"/><path d="M48 10 53 5l6 6-5 5"/>',
+};
 
 function chooseSkillTheme() {
   if (skillThemes.length < 2) return skillThemes[0];
@@ -282,14 +298,11 @@ function setSkillFile(index, { draw = false } = {}) {
   const entry = skillEntries[currentSkillIndex];
   const { skill, group } = entry.dataset;
   skillName.textContent = skill;
-  skillBackName.textContent = skill;
   skillGroup.textContent = group;
-  skillBackGroup.textContent = group;
+  skillMark.innerHTML = `<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${skillIcons[skill] || skillIcons['即梦']}</svg>`;
   skillCount.textContent = `${String(currentSkillIndex + 1).padStart(2, '0')} / ${String(skillEntries.length).padStart(2, '0')}`;
   skillEntries.forEach((button, buttonIndex) => button.setAttribute('aria-pressed', String(buttonIndex === currentSkillIndex)));
-  skillCard.classList.remove('is-flipped');
-  skillCard.setAttribute('aria-expanded', 'false');
-  skillCard.setAttribute('aria-label', `翻阅技能档案：${skill}，${group}`);
+  skillCard.setAttribute('aria-label', `${skill}技能档案，${group}`);
   skillCard.classList.remove('is-revealing');
   clearTimeout(skillRevealTimer);
   if (draw) {
@@ -306,10 +319,6 @@ function setSkillFile(index, { draw = false } = {}) {
 }
 
 skillEntries.forEach((entry, index) => entry.addEventListener('click', () => setSkillFile(index, { draw: true })));
-skillCard?.addEventListener('click', () => {
-  const isFlipped = skillCard.classList.toggle('is-flipped');
-  skillCard.setAttribute('aria-expanded', String(isFlipped));
-});
 skillDrawButton?.addEventListener('click', () => {
   const nextIndex = skillEntries.length < 2
     ? 0
