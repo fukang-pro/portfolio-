@@ -143,7 +143,6 @@ body{background:radial-gradient(ellipse at 8% 5%,#f7dfd5 0,transparent 22%),radi
 .contact-button{background:#315a58;color:#fffaf2}
 .contact-button:hover{background:#214846}
 .contact-orbit{border-color:#9d615b80}
-.contact-star{color:#b95d53}
 .site-footer{border-top-color:#cbbcaf;color:#6e7e79}
 .back-top{border-color:#c67765;color:#9a5b51}
 @media(max-width:900px){.hero:before{width:48vw;height:48vw;right:-1%;top:12%}.about-grid{gap:6%}}
